@@ -8,7 +8,7 @@ add_executable(datarace datarace.cpp)
 add_executable(heartbleed heartbleed.c)
 add_executable(useafterfree useafterfree.cpp)
 
-set_target_properties((datarace heartbleed useafterfree PROPERTIES
+set_target_properties(datarace heartbleed useafterfree PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
 )
