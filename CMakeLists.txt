@@ -1,1 +1,1 @@
-add_executable(heartbleed heartbleed.c)
+add_executable(datarace datarace.cpp)
