@@ -1,20 +1,22 @@
 #include <pthread.h>
 #include <stdio.h>
-#include <string>
-#include <map>
 
-typedef std::map<std::string, std::string> map_t;
+int Global;
 
-void *threadfunc(void *p) {
-  map_t& m = *(map_t*)p;
-  m["foo"] = "bar";
-  return 0;
+void *Thread1(void *x) {
+  Global++;
+  return NULL;
+}
+
+void *Thread2(void *x) {
+  Global--;
+  return NULL;
 }
 
 int main() {
-  map_t m;
-  pthread_t t;
-  pthread_create(&t, 0, threadfunc, &m);
-  printf("foo=%s\n", m["foo"].c_str());
-  pthread_join(t, 0);
+  pthread_t t[2];
+  pthread_create(&t[0], NULL, Thread1, NULL);
+  pthread_create(&t[1], NULL, Thread2, NULL);
+  pthread_join(t[0], NULL);
+  pthread_join(t[1], NULL);
 }
